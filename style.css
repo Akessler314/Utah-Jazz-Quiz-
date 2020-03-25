@@ -1,0 +1,38 @@
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+h1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+body {
+background-color:  rgba(0, 0, 128, 0.795);
+}
+
+p {
+    margin-left: auto;
+    margin-right: auto;
+    padding:15px;
+    font-weight: bold;
+}
+
+button {
+    padding: 10px;
+}
+
+.card {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 75px;
+    padding-top: 20px
+
+    }
