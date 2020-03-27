@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <main class="card w-50">
+    <main class="card w-50" id="main-card">
 
         <img src="Jazz_logo.png" alt="The Utah Jazz Logo">
         <br>
@@ -21,14 +21,22 @@
             Good luck and have fun!
         </p>
         <br>
-        <button type="button" class="btn btn-primary btn-lg start-btn ">Press hear to start the quiz</button>
+        <button type="button" id="start-btn"> Press hear to start the quiz </button>
 
     </main>
 
+    <div id="question-card" class="card w-50 hide">
+        <div id="question">Question</div>
+        <div id="answer-buttons" class="btn-grid">
+            <button type="button" class="btn">Answer 1</button>
+            <button type="button" class="btn">Answer 2</button>
+            <button type="button" class="btn">Answer 3</button>
+            <button type="button" class="btn">Answer 4</button>
+        </div>
+    </div>
 
 
-
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

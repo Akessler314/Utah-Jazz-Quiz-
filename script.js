@@ -1,3 +1,50 @@
+var startButton = document.getElementById('start-btn')
+var mainCardElement = document.getElementById ('main-card')
+var questionCardElement = document.getElementById ('question-card')
+
+var questionElement = document.getElementById ('question')
+var answerButtonsElement = document.getElementById ('answer-buttons')
+
+var getRandomQuestion, questionIndex
+//event listener for when the start game button is pressed 
+startButton.addEventListener('click', startGame)
+
+//function to start the game when the start button is pressed
+function startGame() {
+ mainCardElement.classList.add('hide')
+ getRandomQuestion = questions.sort(() => Math.random() - .5)
+ questionIndex = 0
+questionCardElement.classList.remove('hide')
+nextQuestion()
+}
+
+
+//function that will get the next question 
+function nextQuestion() {
+    showQuestion(getRandomQuestion[questionIndex])
+}
+
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        var button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+           button.dataset.correct = answer.correct 
+        
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+}
+
+
+//function for when the user selecets an awnsers 
+function selectAwnser() {
+
+}
+
 //Array to store all of the questions, their possible awnsers and wether or not the awsners is true or false 
 var questions = [
     {
@@ -92,22 +139,3 @@ var questions = [
     },
 
 ]
-//Put other needed varialbes here 
-var startBtn = document.getElementById('start-btn');
-
-//Put functions here 
-//function that will start the game 
-startBtn.addEventListener('click', function yolo() {
-    console.log('started')
-   });
-
-
-//function that will get the next question 
-function nextQuestion() {
-
-}
-
-//function for when the user selecets an awnsers 
-function selectedAwnser() {
-
-}
