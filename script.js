@@ -1,4 +1,5 @@
 var startButton = document.getElementById('start-btn')
+var nextButton = document.getElementById('next-btn')
 var mainCardElement = document.getElementById('main-card')
 var questionCardElement = document.getElementById('question-card')
 var timerElement =document.getElementById('timer')
@@ -6,9 +7,17 @@ var timerElement =document.getElementById('timer')
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
+// variable to keep track of the user's score 
+var scoreCount = 0
+
 var getRandomQuestion, questionIndex
 //event listener for when the start game button is pressed 
 startButton.addEventListener('click', startGame)
+//eventlistener for the next button after a question is awnsered to proceded to the next question, will stop if there are no more quesitons in the array to get 
+nextButton.addEventListener('click', () => {
+    questionIndex++
+    nextQuestion()
+})
 
 
 
@@ -26,11 +35,18 @@ function startGame() {
 
 //function that will get the next question 
 function nextQuestion() {
+    resetState()
     showQuestion(getRandomQuestion[questionIndex])
 }
-
-
-
+//function removes the previous awnser buttons (to prevent a user from slecting an awnser from a previous question) and removes the next question button to force the user to select and awnser
+function resetState() {
+    clearStatusClass(document.body)
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+      answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+    }
+  }
+//function called when the game is started to get the questions and awnsers to show 
 function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answers => {
@@ -39,16 +55,12 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answers.correct) {
             button.dataset.correct = answers.correct
-
+           
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
     })
 }
-
-
-
-
 //function for when the user selecets an awnsers 
 function selectAnswer(e) {
     var selectedButton = e.target
@@ -64,11 +76,20 @@ function selectAnswer(e) {
         startButton.classList.remove('hide')
     }
 }
-
-
-
-
-
+//funtion to add green and red to the buttons indicating the correct awnsers AFTER the user inputs a choice
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+      element.classList.add('correct')
+    } else {
+      element.classList.add('wrong')
+    }
+  }
+  //function removes the green and red which indicate the right awnser AFTER moving to the next question 
+  function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+  }
 // function for the game timer that is called by pressing the start game button 
 function timer(){
     var sec = 180;
@@ -82,7 +103,6 @@ function timer(){
         }
     }, 1000);
 }
-
 //Array to store all of the questions, their possible awnsers and wether or not the awsners is true or false 
 var questions = [
     {

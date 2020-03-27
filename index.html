@@ -13,15 +13,15 @@
 <body>
 
     <div id="timer" class="card w-25 hide">
-        <p>Game Timer</p>
+        <!-- will stop hiding one the game start-->
+        <p class="big-text">Game Timer</p>
         <br>
-        
         <p id="timerDisplay">180</p>
     </div>
 
     <main class="card w-50" id="main-card">
-
         <img src="Jazz_logo.png" alt="The Utah Jazz Logo">
+        <!-- will start hiding one the game start-->
         <br>
         <p>Welcome to the Utah Jazz Quiz, this quiz is a 10 question quiz to test your knowledge of the Utah Jazz.
             Once you begin there will be a 3 minute timer that starts to count down, complete as many questions as you
@@ -30,17 +30,23 @@
         </p>
         <br>
         <button type="button" id="start-btn"> Press hear to start the quiz </button>
-
     </main>
 
     <div id="question-card" class="card w-50 hide">
+        <!-- will stop hiding one the game start-->
         <div id="question">Question</div>
         <div id="answer-buttons" class="btn-grid">
-           <!-- appending the buttons in JS  -->
+            <!-- appending the buttons in JS  -->
+            <br>
         </div>
+        <!-- Next button that will appear after an awnser is selceted, so the user can move on  -->
+        <button type="button" id="next-btn" class="hide"> Next Question </button>
     </div>
 
-    
+    <div id=score-count>
+        <p id = scoreDisplay> score count:   </p>
+
+    </div>
 
 
 
