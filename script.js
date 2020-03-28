@@ -79,11 +79,20 @@ function selectAnswer(e) {
         nextButton.classList.remove('hide')
         //adds a point if the selcted awnser was correct 
         if (event.target.dataset.correct === 'true') {
+            
             scoreCount++
-            document.getElementById('scoreDisplay').innerHTML = 'Points:  ' + scoreCount 
+            document.getElementById('scoreDisplay').innerHTML = 'Points:  ' + scoreCount
         }
     } else {
+        //adds a point if the selcted awnser was correct and it was the last awnser 
+        if (event.target.dataset.correct === 'true') {
+            scoreCount++
+            pointElement.classList.add('hide')
+            console.log(scoreCount)
+            //stores the user's score in the local storage after the last question 
+            localStorage.setItem("score", scoreCount);
 
+        }
         finishButton.classList.remove('hide')
     }
 }
@@ -123,6 +132,7 @@ function endGame() {
     window.location.href = "scores.html"
 
 }
+
 
 
 //Array to store all of the questions, their possible awnsers and wether or not the awsners is true or false 
