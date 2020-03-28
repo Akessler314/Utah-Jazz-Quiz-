@@ -12,6 +12,7 @@ h1 {
     width: 40%;
     font-size: 48px;
     font-weight: bold;
+    text-decoration: underline;
   }
 
 body {
@@ -76,4 +77,13 @@ button, .btn {
   .btn.wrong {
     background-color: crimson;
 
+  }
+
+  #score-count {
+
+    border: darkblue;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    max-width: 160px;
+    margin-left: 40px;
   }

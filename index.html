@@ -16,7 +16,7 @@
         <!-- will stop hiding one the game start-->
         <p class="big-text">Game Timer</p>
         <br>
-        <p id="timerDisplay">180</p>
+        <p id="timerDisplay"></p>
     </div>
 
     <main class="card w-50" id="main-card">
@@ -24,8 +24,8 @@
         <!-- will start hiding one the game start-->
         <br>
         <p>Welcome to the Utah Jazz Quiz, this quiz is a 10 question quiz to test your knowledge of the Utah Jazz.
-            Once you begin there will be a 3 minute timer that starts to count down, complete as many questions as you
-            can, if the timer runs out the quiz will end.
+            Once you begin there will be a 2 minute timer that starts to count down, complete as many questions as you
+            can, if the timer runs out the quiz will end, once you complete the last question a button will appear that you can click to finish the game.
             Good luck and have fun!
         </p>
         <br>
@@ -41,10 +41,11 @@
         </div>
         <!-- Next button that will appear after an awnser is selceted, so the user can move on  -->
         <button type="button" id="next-btn" class="hide"> Next Question </button>
+        <button type="button" id="finish-btn" class="hide"> Finish </button>
     </div>
 
-    <div id=score-count>
-        <p id = scoreDisplay> score count:   </p>
+    <div id=score-count class= "hide">
+        <p id = scoreDisplay> Points:   </p>
 
     </div>
 

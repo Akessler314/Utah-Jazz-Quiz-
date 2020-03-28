@@ -1,25 +1,30 @@
+//Var for the button to start the game, load the next question and finish the game 
 var startButton = document.getElementById('start-btn')
 var nextButton = document.getElementById('next-btn')
+var finishButton = document.getElementById('finish-btn')
+//Var for selecting multiple elements on the page to minipulate 
 var mainCardElement = document.getElementById('main-card')
 var questionCardElement = document.getElementById('question-card')
-var timerElement =document.getElementById('timer')
-
+var timerElement = document.getElementById('timer')
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
+var pointElement = document.getElementById('score-count')
 
 // variable to keep track of the user's score 
 var scoreCount = 0
 
 var getRandomQuestion, questionIndex
+
 //event listener for when the start game button is pressed 
 startButton.addEventListener('click', startGame)
+
 //eventlistener for the next button after a question is awnsered to proceded to the next question, will stop if there are no more quesitons in the array to get 
 nextButton.addEventListener('click', () => {
     questionIndex++
     nextQuestion()
 })
 
-
+finishButton.addEventListener('click', endGame)
 
 //function to start the game when the start button is pressed
 function startGame() {
@@ -28,6 +33,7 @@ function startGame() {
     questionIndex = 0
     questionCardElement.classList.remove('hide')
     timerElement.classList.remove('hide')
+    pointElement.classList.remove('hide')
     nextQuestion()
     timer()
 }
@@ -43,9 +49,9 @@ function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
-      answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
-  }
+}
 //function called when the game is started to get the questions and awnsers to show 
 function showQuestion(question) {
     questionElement.innerText = question.question
@@ -55,13 +61,13 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answers.correct) {
             button.dataset.correct = answers.correct
-           
+
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
     })
 }
-//function for when the user selecets an awnsers 
+//function for when the user selecets an awnsers, will also bring up a finish button 
 function selectAnswer(e) {
     var selectedButton = e.target
     var correct = selectedButton.dataset.correct
@@ -71,38 +77,54 @@ function selectAnswer(e) {
     })
     if (getRandomQuestion.length > questionIndex + 1) {
         nextButton.classList.remove('hide')
+        //adds a point if the selcted awnser was correct 
+        if (event.target.dataset.correct === 'true') {
+            scoreCount++
+            document.getElementById('scoreDisplay').innerHTML = 'Points:  ' + scoreCount 
+        }
     } else {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
+
+        finishButton.classList.remove('hide')
     }
 }
+
+
 //funtion to add green and red to the buttons indicating the correct awnsers AFTER the user inputs a choice
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
-      element.classList.add('correct')
+        element.classList.add('correct')
     } else {
-      element.classList.add('wrong')
+        element.classList.add('wrong')
     }
-  }
-  //function removes the green and red which indicate the right awnser AFTER moving to the next question 
-  function clearStatusClass(element) {
+}
+//function removes the green and red which indicate the right awnser AFTER moving to the next question 
+function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
-  }
-// function for the game timer that is called by pressing the start game button 
-function timer(){
-    var sec = 180;
-    var timer = setInterval(function(){
-        document.getElementById('timerDisplay').innerHTML=''+sec + '   seconds remaining';
-        sec--;
-        if (sec < 0) {
-            clearInterval(timer);
-                alert('TIME IS UP')
-                //timer and display functioning - alert appears, needs to be changed to actually end the game and bring the user to the score screen 
-        }
-    }, 1000);
 }
+// function for the game timer that is called by pressing the start game button, if the timer reaches 0 it will alert the user that time us up and bring them to the score screen
+function timer() {
+    var sec = 119;  //intentially made the time 119 seconds becuase it takes about a seconds for the function to start after the start game button is pressed 
+    var timer = setInterval(function () {
+        document.getElementById('timerDisplay').innerHTML = '' + sec + '   seconds remaining'
+        sec--
+        if (sec < 0) {
+            clearInterval(timer)
+            alert('TIME IS UP')
+            endGame()
+        }
+    }, 1000)
+}
+
+
+// function that will end the game and bring the user to the score screen. 
+function endGame() {
+    window.location.href = "scores.html"
+
+}
+
+
 //Array to store all of the questions, their possible awnsers and wether or not the awsners is true or false 
 var questions = [
     {
