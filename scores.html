@@ -56,6 +56,7 @@
         }
         // function to let the user restart the game 
         function restartGame () {
+            //localStorage.removeItem('score') TRYING to erase the old score saved to local storage becuase if the new score is lower it will not replace the score
             window.location.href = "index.html"
             
         }

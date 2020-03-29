@@ -90,9 +90,9 @@ function selectAnswer(e) {
             pointElement.classList.add('hide')
             console.log(scoreCount)
             //stores the user's score in the local storage after the last question 
-            localStorage.setItem("score", scoreCount);
-
         }
+        localStorage.setItem("score", scoreCount);
+
         finishButton.classList.remove('hide')
     }
 }
